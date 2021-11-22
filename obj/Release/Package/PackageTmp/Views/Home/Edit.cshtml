@@ -1,0 +1,70 @@
+﻿@model workjop.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "تعديل ";
+    Layout = "~/Views/Shared/_ MainLayout.cshtml";
+}
+
+<h2>تعديل  العمل </h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>قدم على عمل</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.userId)
+    @Html.HiddenFor(model => model.jobId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.jobId, "اسم الوظيفة", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.Job.JopTitle
+
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.userId, "اسم المستخدم", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.User.UserName
+
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.message,"الرسالة ", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.message, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.applyData,"التاريخ والوقت", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.applyData
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="حفظ التعديلات " class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("العودة الي الوظائف", "Index", new { id = Model.Id }, new { @class = "btn btn-success " })
+</div>
+

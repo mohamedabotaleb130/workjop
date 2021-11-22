@@ -1,0 +1,41 @@
+﻿@model IEnumerable<workjop.Models.Category>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron alert alert-info" >
+    <h3>مرحبا بك عزيزي الزائر</h3>
+    <p >مرحبا بك في فضا,البحث عن الوظائف باختلاف  اصنافها ,يمكنك  نشر وظيفة ان كنت ناشرا ,ويمكنك التقدم للوظيفة اذا كنت باحثا عن شغل </p>
+    <p><a href="https://www.linkedin.com/home" class="btn btn-primary btn-lg">المزيد من التفاصيل  &raquo;</a></p>
+</div>
+
+
+@foreach (var item in Model)
+{
+<div class="panel panel-info">
+    <div class="panel-heading"><h1>@Html.DisplayFor(modelItem => item.CategoryName)</h1></div>
+
+    <div class="row panel-body">
+
+        <h5>@Html.DisplayFor(modelItem => item.CategoryDescription)</h5>
+
+        @foreach (var sumitem in item.Jobs)
+        {
+
+    <div class="col-md-3 thumbnail" 
+         style="margin-left:20px;margin-bottom:30px;min-height:380px;">
+        <img src="~/Uploads/@sumitem.JobImage" />
+        <h3>@Html.DisplayFor(modelItem => sumitem.JopTitle)</h3>
+        <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => sumitem.JobContent).ToString()))</h5>
+        @Html.ActionLink("التفاصيل   ", "Details", new { JobId = sumitem.Id }, new { @class = "btn btn-primary " })
+
+    </div>
+        }
+    </div>
+
+
+</div> 
+}
+
+
+

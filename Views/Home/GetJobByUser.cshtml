@@ -1,0 +1,47 @@
+﻿@model IEnumerable<workjop.Models.ApplyForJob>
+
+@{
+    ViewBag.Title = "GetJobByUser";
+    Layout = "~/Views/Shared/_ MainLayout.cshtml";
+}
+
+<h2>جميع الوظائف المتقدم اليها من طرفكم</h2>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Job.JopTitle)
+        </th>
+      
+        <th>
+            نص الرسالة
+        </th>
+        <th>
+            تاريخ الإرسال
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Job.JopTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.applyData)
+        </td>
+    
+        <td>
+            @Html.ActionLink("تعديل  ", "Edit", new { id = item.Id }, new { @class = "btn btn-primary " })
+            @Html.ActionLink("تفاصيل  ", "DetailsOfJob", new { id = item.Id }, new { @class = "btn btn-success" })
+            @Html.ActionLink(" حذف ", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,126 @@
+﻿@model workjop.Models.Job
+
+@{
+    ViewBag.Title = "تعديل الوظائف";
+    Layout = "~/Views/Shared/_ MainLayout.cshtml";
+}
+
+<h2>تعديل الوظائف </h2>
+
+@using (Html.BeginForm("Edit", "Jobs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <div class="alert alert-danger" style="display:none" id="error-div">
+        <span id="View-err">
+
+        </span>
+    </div>
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.JobImage)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.JopTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.JopTitle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.JopTitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.JobContent, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.JobContent, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.JobContent, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.JobImage, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="upload" id="myJobImage" />
+            @Html.ValidationMessageFor(model => model.JobImage, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryID, "نوع الوظيفة", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="حفظ" class="btn btn-warning" id="save" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("العودة الي القائمة", "Index", new { id = Model.Id }, new { @class = "btn btn-danger" })
+</div>
+
+@section scripts{
+ 
+<script>
+    $(function () {
+
+        $("#save").click(function () {
+
+        //    //check if the input is Empty 
+        //    if ($("#myJobImage").val() == "")
+        //    {
+        //        $("#error-div").fadeIn();
+        //        $("#View-err").append("رجاء قم باختيار صورة ");
+        //        return false;
+
+        //    }
+
+
+        if ($("#myJobImage").val() != "") {
+            //check if the image extension is valid 
+
+            var fillename = document.getElementById("myJobImage").value;
+
+            //tiher.png===>.png
+            var extensionImg = fillename.substr(fillename.lastIndexOf('.') + 1);
+            var validextensions = ['jpg', 'PNG', 'GIF', 'BMP', 'TIFF','HEIC']
+            if ($.inArray(extensionImg, validextensions) == -1) {
+
+                $("#error-div").fadeIn();
+                $("#View-err").append("رجاء قم باختيار صورة بامتداد صحيح");
+                return false;
+
+            }
+
+
+            //check if the image  size is valid(3mb)
+
+            var myFileSize = document.getElementById("myJobImage").files[0].size / 1024 / 1024;
+
+
+            if (myFileSize >=3)
+            {
+                $("#error-div").fadeIn();
+                $("#View-err").append("رجاء قم باختيار صورة  حجمها اقل 3 او تساوي ميغا بايت");
+                return false;
+
+            }
+
+        }
+    
+        });
+
+    });
+
+</script>
+}

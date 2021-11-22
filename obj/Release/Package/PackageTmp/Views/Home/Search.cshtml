@@ -1,0 +1,35 @@
+﻿@model IEnumerable<workjop.Models.Job>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_ MainLayout.cshtml";
+}
+
+    <div class="panel panel-default" style="padding:15px;">
+        <div>
+
+            <h1 class="panel-heading">نتائج البحث</h1>
+        </div>
+       
+
+        <div class="row">
+            @foreach (var sumitem in Model)
+            {
+                   
+                
+
+            <div class="col-md-3 thumbnail" style="margin-left:20px;margin-bottom:30px;min-height:380px;">
+                <img src="~/Uploads/@sumitem.JobImage" />
+                <h3>@Html.DisplayFor(modelItem => sumitem.JopTitle)</h3>
+                @*<h3>@Html.DisplayFor(modelItem => sumitem.JobContent)</h3>*@
+                <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => sumitem.JobContent).ToString()))</h5>
+
+                @Html.ActionLink("التفاصيل   ", "Details", new { JobId = sumitem.Id }, new { @class = "btn btn-primary " })
+
+            </div>
+            }
+        </div>
+
+
+    </div>
+

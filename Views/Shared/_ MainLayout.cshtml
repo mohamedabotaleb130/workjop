@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width scale=1" />
+    <title>Index</title>
+    <link href="~/Content/icofont.css" rel="stylesheet" />
+    <link href="~/Content/icofont.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- CSS only -->
+    <link href="~/Content/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-default navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="~/Home" class="navbar-brand">
+                    <img src="~/images/logo.png" class="logo-size" />
+
+                </a>
+
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="~/Home">
+                            <div class="icons8-home"></div>
+                            الرئيسية
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="~/Home/About">
+                            @*<i class="glyphicon glyphicon-info-sign"></i>*@
+                            <div class="icons8-info"></div>
+
+                            حول الموقع
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="~/Home/Contact">
+                            @*<i class="icofont-ui-call"></i>*@
+                            <div class="icons9-info"></div>
+
+                            اتصل  بنا
+                        </a>
+                    </li>
+                    <li>
+                          @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                          {
+                            <input type="text" name="searchName" id="searchName"
+                                   placeholder="ابحث هنا..." />
+                          }
+
+                    </li>
+                </ul>
+                <!---partial -->
+
+                @Html.Partial("_Login")
+
+
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="container">
+        
+            <div class="row" style="min-height:550px;">
+                @RenderBody()
+
+            </div>
+
+        </div>
+
+
+
+    <!--Footer-->
+
+    <footer class="myfooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+
+                    <h3>
+                        <i class="icofont-unique-idea"></i>
+                        من نحن؟
+                    </h3>
+                    <p>
+                        موقع التوظيف  هي شركة تقدم خدمات حلول الويب ومتواجدة وبقوة في السوق منذ عام 2021, لنا قاعدة كبيرة من العملاء من مختلف دول العالم الذين استطاعنا ان ننال على ثقتهم من خلال تعاملنا معهم في هذه السنوات
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+
+                        <i class="glyphicon glyphicon-globe"></i>
+
+
+                        روابط هامة
+                    </h3>
+                    <ul>
+                        <li><a href="https://www.gov-career.com/%d9%88%d8%b8%d8%a7%d8%a6%d9%81/">وظائف القطاع العامة</a></li>
+                        <li><a href="#">وظائف القطاع الخاصة</a></li>
+                        <li><a href="#">وظائف خارج البلاد</a></li>
+                        <li><a href="https://www.gov-career.com/%d9%88%d8%b8%d8%a7%d8%a6%d9%81/">وظائف متنوعة </a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+
+                        <i class="icofont-ui-message"></i>
+
+                        تواصل معنا
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="icofont-facebook label-primary"></i>
+
+                                صفحتنا علي الفيس بوك
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="icofont-twitter label-info"></i>
+                                تابعنا علي تويتر
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+
+                                <i class="icofont-youtube-play label-danger"></i>
+                                شاهدنا علي  اليوتيوب
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+
+                                <i class="icofont-meetme label-warning"></i>
+                                اترك لنا رسالة
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="supfooter">
+            <span>جميع الحقوق محفوظة لهذا الموقع -2022</span>
+        </div>
+    </footer>
+
+
+
+    <script src="/Scripts/jquery.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("scripts",required:false)
+
+</body>
+</html>

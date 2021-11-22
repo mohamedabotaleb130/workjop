@@ -1,0 +1,52 @@
+﻿@model workjop.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_ MainLayout.cshtml";
+}
+
+<h1>حذف العمل  </h1>
+
+<h3>هل أنت متأكد أنك تريد حذف هذا؟</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            عنوان الوظيفة
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job.JopTitle)
+        </dd>
+
+
+        <dt>
+            نص الرسالة
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.message)
+        </dd>
+
+        <dt>
+            تاريخ الإرسال
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.applyData)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="حذف " class="btn btn-danger" /> 
+    @Html.ActionLink("العودة الي الوظائف", "Index", new { id = Model.Id }, new { @class = "btn btn-primary " })
+
+</div>
+    }
+</div>

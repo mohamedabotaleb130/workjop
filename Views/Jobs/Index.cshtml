@@ -1,0 +1,62 @@
+﻿@model IEnumerable<workjop.Models.Job>
+
+@{
+    ViewBag.Title = "قائمة الوظائف";
+    Layout = "~/Views/Shared/_ MainLayout.cshtml";
+}
+
+<h2>قائمة الوظائف </h2>
+
+<p>
+    @Html.ActionLink("اضافة وظيفة جديدة", "Create", null, new { @class = "btn btn-primary " })
+</p>
+
+<table class="table table-bordered table-hover">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JopTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobImage)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category.CategoryName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.JopTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.JobContent)
+    </td>
+    <td>
+        <img src="~/Uploads/@Html.DisplayFor(Model=>item.JobImage)" class="thumbnail" style="width:60px;height:50px;" />
+
+    </td>
+
+
+    <td>
+
+        @Html.ActionLink("التعديل", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("تفاصيل    ", "Details", new { id = item.Id }, new { @class = "btn btn-success" })
+        @Html.ActionLink(" حذف ", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+
+    </td>
+    
+
+</tr>
+    }
+
+</table>
